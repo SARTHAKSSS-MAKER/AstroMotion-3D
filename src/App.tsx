@@ -3,7 +3,6 @@ import { Canvas } from "@react-three/fiber";
 import { useEffect, useState, useRef } from "react";
 import SpaceScene from "./components/SpaceScene";
 import CameraController from "./components/CameraController";
-import HandTracker from "./components/HandTracker";
 
 export default function App() {
   const [showHero, setShowHero] = useState(true);
@@ -37,7 +36,7 @@ export default function App() {
         <SpaceScene />
         <CameraController />
       </Canvas>
-      <HandTracker />
+      
 
       <audio
         ref={audioRef}
