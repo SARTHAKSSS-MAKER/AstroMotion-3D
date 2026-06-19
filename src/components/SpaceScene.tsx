@@ -1,4 +1,4 @@
-import { Stars } from "@react-three/drei";
+import { Stars, useTexture } from "@react-three/drei";
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
@@ -10,6 +10,17 @@ const mercuryRef = useRef<THREE.Mesh>(null);
 const venusRef = useRef<THREE.Mesh>(null);
 const earthRef = useRef<THREE.Mesh>(null);
 const moonRef = useRef<THREE.Mesh>(null);
+const earthTexture = useTexture("/textures/earth.jpg");
+const moonTexture = useTexture("/textures/moon.jpg");
+const mercuryTexture = useTexture("/textures/mercury.jpg");
+const venusTexture = useTexture("/textures/venus.jpg");
+const marsTexture = useTexture("/textures/mars.jpg");
+const jupiterTexture = useTexture("/textures/jupiter.jpg");
+const saturnTexture = useTexture("/textures/saturn.jpg");
+const RingTexture = useTexture("/textures/saturn_ring1.jpg");
+const uranusTexture = useTexture("/textures/uranus.jpg");
+const neptuneTexture = useTexture("/textures/neptune.jpg");
+const sunTexture = useTexture("/textures/sun1.jpg");
 const marsRef = useRef<THREE.Mesh>(null);
 const jupiterRef = useRef<THREE.Mesh>(null);
 const saturnRef = useRef<THREE.Mesh>(null);
@@ -23,15 +34,15 @@ const neptuneRef = useRef<THREE.Mesh>(null);
   }
 
   if (mercuryRef.current) {
-    mercuryRef.current.rotation.y += 0.02;
+    mercuryRef.current.rotation.y += 0.01;
   }
 
   if (venusRef.current) {
-    venusRef.current.rotation.y += 0.015;
+    venusRef.current.rotation.y += 0.008;
   }
 
   if (earthRef.current) {
-    earthRef.current.rotation.y += 0.02;
+    earthRef.current.rotation.y += 0.009;
   }
 
   if (moonRef.current && earthRef.current) {
@@ -49,32 +60,32 @@ const neptuneRef = useRef<THREE.Mesh>(null);
   }
 
   if (jupiterRef.current) {
-    jupiterRef.current.rotation.y += 0.01;
+    jupiterRef.current.rotation.y += 0.04;
   }
 
   if (saturnRef.current) {
-    saturnRef.current.rotation.y += 0.01;
+    saturnRef.current.rotation.y += 0.03;
   }
 
   if (ringRef.current) {
-    ringRef.current.rotation.z += 0.003;
+    ringRef.current.rotation.z += 0.005;
   }
 
   if (uranusRef.current) {
-    uranusRef.current.rotation.y += 0.012;
+    uranusRef.current.rotation.y += 0.015;
   }
 
   if (neptuneRef.current) {
-    neptuneRef.current.rotation.y += 0.012;
+    neptuneRef.current.rotation.y += 0.014;
   }
 });
 
   return (
     <>
      <Stars
-  radius={200}
-  depth={600}
-  count={3000}
+  radius={100}
+  depth={500}
+  count={100000}
   factor={8}
   saturation={0}
   fade
@@ -82,80 +93,74 @@ const neptuneRef = useRef<THREE.Mesh>(null);
 />
       {/* Sun */}
       <mesh ref={sunRef} position={[0, 0, -50]}>
-        <sphereGeometry args={[12, 64, 64]} />
+        <sphereGeometry args={[15, 64, 64]} />
         <meshStandardMaterial
-          color="#FDB813"
-          emissive="#FDB813"
-          emissiveIntensity={3}
-          wireframe
-        />
-      </mesh>
+  map={sunTexture}
+  //emissive="#ffaa00"
+  //emissiveIntensity={1}
+/>      </mesh>
 
       {/* Mercury */}
       <mesh ref={mercuryRef} position={[0, 0, -120]}>
-        <sphereGeometry args={[4, 32, 32]} />
-        <meshStandardMaterial color="gray" wireframe />
+        <sphereGeometry args={[2, 32, 32]} />
+        <meshStandardMaterial map={mercuryTexture} />
       </mesh>
 
       {/* Venus */}
-      <mesh ref={venusRef} position={[0, 0, -220]}>
-        <sphereGeometry args={[6, 32, 32]} />
-        <meshStandardMaterial color="#d4a76a" wireframe />
+      <mesh ref={venusRef} position={[0, 0, -190]}>
+        <sphereGeometry args={[4, 32, 32]} />
+        <meshStandardMaterial map={venusTexture} />
       </mesh>
 
       {/* Earth */}
-      <mesh ref={earthRef} position={[0, 0, -340]}>
-        <sphereGeometry args={[7, 32, 32]} />
-        <meshStandardMaterial color="#2E86DE"
-        emissive="#2E86DE"
-        emissiveIntensity={2}
-        wireframe />
+      <mesh ref={earthRef} position={[0, 0, -260]}>
+        <sphereGeometry args={[4.5, 32, 32]} />
+        <meshStandardMaterial map={earthTexture} />
       </mesh>
 
       {/* Moon */}
-      <mesh ref={moonRef} position={[15, 0, -340]}>
-        <sphereGeometry args={[2, 32, 32]} />
-        <meshStandardMaterial color="lightgray" wireframe />
+      <mesh ref={moonRef} position={[15, 0, -260]}>
+        <sphereGeometry args={[1, 32, 32]} />
+        <meshStandardMaterial map={moonTexture} />
       </mesh>
 
       {/* Mars */}
-      <mesh ref={marsRef} position={[0, 0, -470]}>
-        <sphereGeometry args={[5, 32, 32]} />
-        <meshStandardMaterial color="#C1440E" wireframe />
+      <mesh ref={marsRef} position={[0, 0, -330]}>
+        <sphereGeometry args={[3, 32, 32]} />
+        <meshStandardMaterial map={marsTexture} />
       </mesh>
 
       {/* Jupiter */}
-      <mesh ref={jupiterRef} position={[0, 0, -650]}>
-        <sphereGeometry args={[20, 64, 64]} />
-        <meshStandardMaterial color="#D8CA9D" wireframe />
+      <mesh ref={jupiterRef} position={[0, 0, -400]}>
+        <sphereGeometry args={[9, 64, 64]} />
+        <meshStandardMaterial map={jupiterTexture} />
       </mesh>
 
       {/* Saturn */}
-      <mesh ref={saturnRef} position={[0, 0, -850]}>
-        <sphereGeometry args={[18, 64, 64]} />
-        <meshStandardMaterial color="#E3C16F" wireframe />
+      <mesh ref={saturnRef} position={[0, 0, -470]}>
+        <sphereGeometry args={[8, 64, 64]} />
+        <meshStandardMaterial map={saturnTexture} />
       </mesh>
 
       {/* Ring */}
-      <mesh ref={ringRef} position={[0, 0, -850]}
+      <mesh ref={ringRef} position={[0, 0, -470]}
        rotation={[Math.PI / 2.5, 0, 0]}>
-        <ringGeometry args={[25, 40, 64]} />
+        <ringGeometry args={[15, 25, 64]} />
         <meshBasicMaterial
-          color="#d8c28f"
-          side={THREE.DoubleSide}
+          map={RingTexture}
         />
       </mesh>
 
       {/* Uranus */}
-      <mesh ref={uranusRef} position={[0, 0, -970]}>
-        <sphereGeometry args={[14, 64, 64]} />
-        <meshStandardMaterial color="#7FDBFF" wireframe />
+      <mesh ref={uranusRef} position={[0, 0, -540]}>
+        <sphereGeometry args={[6, 64, 64]} />
+        <meshStandardMaterial map={uranusTexture} />
       </mesh>
 
       {/* Neptune */}
-      <mesh ref={neptuneRef} position={[0, 0, -1100]}>
-        <sphereGeometry args={[14, 64, 64]} />
-        <meshStandardMaterial color="#4169E1" wireframe />
+      <mesh ref={neptuneRef} position={[0, 0, -610]}>
+        <sphereGeometry args={[6, 64, 64]} />
+        <meshStandardMaterial map={neptuneTexture} />
       </mesh>
     </>
   );
