@@ -25,7 +25,7 @@ export default function CameraController() {
 
     const handleWheel = (e: WheelEvent) => {
       gsap.to(camera.position, {
-        z: camera.position.z + e.deltaY * 0.5,
+        z: camera.position.z - e.deltaY * 0.5,
         duration: 0.6,
         ease: "power3.out",
       });
